@@ -1,11 +1,13 @@
-import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
+import { GitHub, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
+
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer className="bg-[#1f3d1a] text-white pt-12 pb-6 mt-12">
-      <div className="container mx-auto px-4 grid gap-10 md:grid-cols-4 text-sm">
+      <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-start gap-10 text-sm">
         {/* Brand Section */}
-        <div>
+        <div className="md:w-1/2">
           <h2 className="text-2xl font-bold mb-4">📚 Book Finder</h2>
           <p className="text-gray-300 leading-relaxed">
             Discover your next favorite book. Explore curated collections and
@@ -14,95 +16,60 @@ const Footer = () => {
         </div>
 
         {/* Navigation Links */}
-        <div>
-          <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
-          <ul className="space-y-2">
-            {[
-              { name: "Home", href: "/" },
-              { name: "Library", href: "/library" },
-              { name: "About Us", href: "/about" },
-              { name: "Contact Us", href: "/contact" },
-              { name: "Privacy Policy", href: "/privacy" },
-            ].map((link) => (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  className="hover:text-yellow-300 transition-colors duration-300"
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <div className="flex flex-col gap-6 md:items-end md:w-1/2">
+          <nav>
+            <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
+            <ul className="flex flex-wrap gap-6 text-sm font-medium">
+              {[
+                { name: "Home", href: "/" },
+                { name: "Library", href: "/library" },
+                { name: "About Us", href: "/about" },
+                { name: "Our Process", href: "/ourProcess" },
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.href}
+                    className="hover:text-yellow-300 transition duration-300">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        {/* Support Links */}
-        <div>
-          <h3 className="text-lg font-semibold mb-3">Support</h3>
-          <ul className="space-y-2">
-            <li>
+          {/* Social Media */}
+          <div className="mt-4">
+            <h3 className="text-lg font-semibold mb-2">Follow Us</h3>
+            <div className="flex gap-4">
               <a
-                href="/faq"
-                className="hover:text-yellow-300 transition-colors duration-300"
-              >
-                FAQs
+                href="https://github.com/thakurvinesh57/BookFinder"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gray-300 transition-transform duration-300 hover:scale-110">
+                <GitHub fontSize="large" />
               </a>
-            </li>
-            <li>
               <a
-                href="/help"
-                className="hover:text-yellow-300 transition-colors duration-300"
-              >
-                Help Center
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-sky-400 transition-transform duration-300 hover:scale-110">
+                <Twitter fontSize="large" />
               </a>
-            </li>
-            <li>
               <a
-                href="/terms"
-                className="hover:text-yellow-300 transition-colors duration-300"
-              >
-                Terms of Service
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-pink-400 transition-transform duration-300 hover:scale-110">
+                <Instagram fontSize="large" />
               </a>
-            </li>
-          </ul>
-        </div>
-
-        {/* Social Media */}
-        <div>
-          <h3 className="text-lg font-semibold mb-3">Follow Us</h3>
-          <div className="flex gap-4 mt-2">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-400 transition-transform duration-300 hover:scale-110"
-            >
-              <Facebook fontSize="large" />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-sky-400 transition-transform duration-300 hover:scale-110"
-            >
-              <Twitter fontSize="large" />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-pink-400 transition-transform duration-300 hover:scale-110"
-            >
-              <Instagram fontSize="large" />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-300 transition-transform duration-300 hover:scale-110"
-            >
-              <LinkedIn fontSize="large" />
-            </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-300 transition-transform duration-300 hover:scale-110">
+                <LinkedIn fontSize="large" />
+              </a>
+            </div>
           </div>
         </div>
       </div>

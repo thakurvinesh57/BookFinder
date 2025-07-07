@@ -1,35 +1,32 @@
-import { useState } from "react";
+import React from "react";
 
 const BookCard = ({ book }) => {
-  const [showMore, setShowMore] = useState(false);
-  const { volumeInfo } = book;
-  const thumbnail = volumeInfo.imageLinks?.thumbnail;
+  const info = book.volumeInfo;
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 w-full sm:w-[300px] flex flex-col">
-      {thumbnail && (
-        <img
-          src={thumbnail}
-          alt={volumeInfo.title}
-          className="w-full h-60 object-cover rounded"
-        />
-      )}
-      <h2 className="text-xl font-semibold mt-3">{volumeInfo.title}</h2>
-      <p className="text-gray-700 text-sm mt-1">
-        <strong>Author:</strong> {volumeInfo.authors?.join(", ")}
+    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center text-center">
+      <img
+        src={info.imageLinks?.thumbnail || "https://via.placeholder.com/150"}
+        alt={info.title}
+        className="w-32 h-48 object-cover mb-4 rounded"
+      />
+      <h3 className="text-lg font-semibold mb-1">{info.title}</h3>
+      <p className="text-sm text-gray-600 mb-2">
+        {info.authors?.join(", ") || "Unknown Author"}
       </p>
-      <p className="text-gray-600 text-sm mt-2">
-        {showMore
-          ? volumeInfo.description
-          : `${volumeInfo.description?.slice(0, 100) || "No description"}...`}
-      </p>
-      {volumeInfo.description && (
-        <button
-          className="mt-auto text-blue-600 hover:underline text-sm"
-          onClick={() => setShowMore(!showMore)}
-        >
-          {showMore ? "Show Less" : "Read More"}
-        </button>
+
+      {info.previewLink ? (
+        <a
+          href={info.previewLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-auto bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+          Preview Book
+        </a>
+      ) : (
+        <span className="text-xs text-gray-500 mt-auto">
+          Preview not available
+        </span>
       )}
     </div>
   );
